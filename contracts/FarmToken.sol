@@ -20,4 +20,8 @@ contract FarmToken is ERC20 {
     {
         token = IERC20(_token);
     }
+
+    function balance() public view returns (uint256) {
+        return token.balanceOf(address(this));
+    }
 }
