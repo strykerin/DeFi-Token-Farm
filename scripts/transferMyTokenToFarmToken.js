@@ -21,18 +21,17 @@ module.exports = async function(callback) {
     console.log('Amount of MyToken FarmToken is allowed to transfer on our behalf After: ' + allowanceAfter.toString());
 
 
-
     // Verify accounts[0] and farmToken balance of MyToken before and after the transfer
     balanceBeforeAccounts0 = await myToken.balanceOf(accounts[0]);
     balanceBeforeFarmToken = await myToken.balanceOf(farmToken.address);
-    console.log('Balance Before MyToken accounts[0] ' + web3.utils.fromWei(balanceBeforeAccounts0.toString()))
-    console.log('Balance Before MyToken TokenFarm ' + web3.utils.fromWei(balanceBeforeFarmToken.toString()))
+    console.log('Balance MyToken Before MyToken accounts[0] ' + web3.utils.fromWei(balanceBeforeAccounts0.toString()))
+    console.log('Balance MyToken Before MyToken TokenFarm ' + web3.utils.fromWei(balanceBeforeFarmToken.toString()))
     // Call Deposit function from FarmToken
     await farmToken.deposit(1000);
     balanceAfterAccounts0 = await myToken.balanceOf(accounts[0]);
     balanceAfterFarmToken = await myToken.balanceOf(farmToken.address);
-    console.log('Balance After MyToken accounts[0] ' + web3.utils.fromWei(balanceAfterAccounts0.toString()))
-    console.log('Balance After MyToken TokenFarm ' + web3.utils.fromWei(balanceAfterFarmToken.toString()))
+    console.log('Balance MyToken After MyToken accounts[0] ' + web3.utils.fromWei(balanceAfterAccounts0.toString()))
+    console.log('Balance MyToken After MyToken TokenFarm ' + web3.utils.fromWei(balanceAfterFarmToken.toString()))
 
     // End function
     callback();
