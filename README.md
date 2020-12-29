@@ -1,1 +1,1 @@
-# DeFi-Token-Farm
+# DeFi Token Farm
