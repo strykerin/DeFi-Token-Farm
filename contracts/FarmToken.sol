@@ -24,4 +24,15 @@ contract FarmToken is ERC20 {
     function balance() public view returns (uint256) {
         return token.balanceOf(address(this));
     }
+
+    function deposit(uint256 _amount) public {
+        // Amount must be greater than zero
+        require(_amount > 0, "amount cannot be 0");
+
+        // Transfer MyToken to smart contract
+        token.safeTransferFrom(msg.sender, address(this), _amount);
+
+        // Mint FarmToken to msg sender
+        _mint(msg.sender, _amount);
+    }
 }
