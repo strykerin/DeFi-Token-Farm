@@ -35,4 +35,17 @@ contract FarmToken is ERC20 {
         // Mint FarmToken to msg sender
         _mint(msg.sender, _amount);
     }
+
+    function depositAll() public {
+        // Deposit all of MyTokens from msg sender
+        deposit(token.balanceOf(msg.sender));
+    }
+
+    function withdraw(uint256 _amount) public {
+        // Burn FarmTokens from msg sender
+        _burn(msg.sender, _amount);
+
+        // Transfer MyTokens from this smart contract to msg sender
+        token.safeTransfer(msg.sender, _amount);
+    }
 }

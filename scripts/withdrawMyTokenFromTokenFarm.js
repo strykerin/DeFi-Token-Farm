@@ -14,11 +14,14 @@ module.exports = async function(callback) {
     // In order to allow the Smart Contract to transfer to MyToken (ERC-20) on the accounts[0] behalf, 
     // we must explicitly allow it.
     // We allow farmToken to transfer x amount of MyToken on our behalf
-    await myToken.approve(farmToken.address, 200000);
+
+    await myToken.approve(farmToken.address,web3.utils.toWei('100', 'ether'));
 
     // Validate that the farmToken can now move x amount of MyToken on our behalf
     const allowanceAfter = await myToken.allowance(accounts[0], farmToken.address);
     console.log('Amount of MyToken FarmToken is allowed to transfer on our behalf After: ' + allowanceAfter.toString());
+
+
 
 
     // Verify accounts[0] and farmToken balance of MyToken before and after the transfer
@@ -34,8 +37,8 @@ module.exports = async function(callback) {
     console.log('Balance FarmToken Before accounts[0] ' + web3.utils.fromWei(balanceFarmTokenBeforeAccounts0.toString()))
     console.log('Balance FarmToken Before TokenFarm ' + web3.utils.fromWei(balanceFarmTokenBeforeFarmToken.toString()))
     // Call Deposit function from FarmToken
-    console.log('Call Deposit Function')
-    await farmToken.deposit(1000);
+    console.log('Call Withdraw Function')
+    await farmToken.withdraw(web3.utils.toWei('100', 'ether'));
     console.log('*** My Token ***')
     balanceMyTokenAfterAccounts0 = await myToken.balanceOf(accounts[0]);
     balanceMyTokenAfterFarmToken = await myToken.balanceOf(farmToken.address);
