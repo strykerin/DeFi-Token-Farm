@@ -40,4 +40,12 @@ contract FarmToken is ERC20 {
         // Deposit all of MyTokens from msg sender
         deposit(token.balanceOf(msg.sender));
     }
+
+    function withdraw(uint256 _shares) public {
+        // Burn FarmTokens from msg sender
+        _burn(msg.sender, _shares);
+
+        // Transfer MyTokens from this smart contract to msg sender
+        token.safeTransfer(msg.sender, _shares);
+    }
 }
