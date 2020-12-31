@@ -123,7 +123,7 @@ Now we can compile our smart contract by running the following command:
 truffle compile
 ```
 
-After compiling, we can now deploy our token. For this open Ganache and select the option ÔÇ£QuickstartÔÇØ to start a local Ethereum blockchain. To deploy our contract, run:
+After compiling, we can now deploy our token. For this open Ganache and select the option "Quickstart" to start a local Ethereum blockchain. To deploy our contract, run:
 
 ```
 truffle migrate
@@ -164,7 +164,7 @@ The FarmToken smart contract will have 3 functions:
 
 * `deposit(uint256 _amount)`: Transfer MyToken on behalf of the user to the FarmToken smart contract then mint and transfer FarmToken to the user.
 
-* `withdraw(uint256 _amount)`: Burn userÔÇÖs FarmTokens and transfer MyTokens to the userÔÇÖs address.
+* `withdraw(uint256 _amount)`: Burn user's FarmTokens and transfer MyTokens to the user's address.
 
 Let's look at the FarmToken constructor:
 
@@ -253,7 +253,7 @@ Note that when deploying the FarmToken, we pass as parameter the address of the 
 
 Now, run `truffle compile` and `truffle migrate` to deploy our contracts.
 
-Let'ss test our smart contract. Instead of using the `truffle console` to interact with our smart contract, we will create a script to automate this process. Create a folder called `scripts` and add the following file `getMyTokenBalance.js`. It will check the balance of MyTokens on the FarmToken smart contract:
+Let's test our smart contract. Instead of using the `truffle console` to interact with our smart contract, we will create a script to automate this process. Create a folder called `scripts` and add the following file `getMyTokenBalance.js`. It will check the balance of MyTokens on the FarmToken smart contract:
 
 ```javascript
 const MyToken = artifacts.require('MyToken');
