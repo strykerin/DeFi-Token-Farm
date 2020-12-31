@@ -391,12 +391,12 @@ To run this script: `truffle exec .\scripts\withdrawMyTokenFromTokenFarm.js`. As
 
 ## References
 
-[Contracts ÔÇö OpenZeppelin Docs](https://docs.openzeppelin.com/contracts/3.x/)
+[Contracts - OpenZeppelin Docs](https://docs.openzeppelin.com/contracts/3.x/)
 
 [Sweet Tools for Smart Contracts | Truffle Suite](https://www.trufflesuite.com/)
 
 [Ganache | Truffle Suite](https://www.trufflesuite.com/ganache)
 
-[What is DeFi? A BegginerÔÇÖs Guide (2021 Updated) (99bitcoins.com)](https://99bitcoins.com/what-is-defi/)
+[What is DeFi? A Begginer's Guide (2021 Updated) (99bitcoins.com)](https://99bitcoins.com/what-is-defi/)
 
-[DeFi ÔÇö The Decentralized Finance Leaderboard at DeFi Pulse](https://defipulse.com/)
+[DeFi - The Decentralized Finance Leaderboard at DeFi Pulse](https://defipulse.com/)
