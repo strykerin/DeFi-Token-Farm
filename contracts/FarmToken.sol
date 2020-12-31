@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract FarmToken is ERC20 {
     using Address for address;
     using SafeMath for uint256;
+    using SafeERC20 for IERC20;
 
     IERC20 public token;
 
