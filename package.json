@@ -1,0 +1,24 @@
+{
+  "name": "defi-token-farm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strykerin/DeFi-Token-Farm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/strykerin/DeFi-Token-Farm/issues"
+  },
+  "homepage": "https://github.com/strykerin/DeFi-Token-Farm#readme"
+}
