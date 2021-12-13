@@ -1,9 +1,11 @@
-pragma solidity ^0.6.2;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MyToken is ERC20 {
-    constructor() public ERC20("MyToken", "MTKN"){
+    constructor() ERC20("MyToken", "MTKN"){
         _mint(msg.sender, 1000000000000000000000000);
     }
+    
 }
