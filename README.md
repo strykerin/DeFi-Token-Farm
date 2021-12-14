@@ -7,6 +7,13 @@ Create and deploy a DeFi App to Ethereum
 In this repo we will build a DeFi Application with Solidity where users can deposit an ERC20 token to the smart contract and it will mint and transfer Farm Tokens to them. The users can later withdraw their ERC20 tokens by burning their Farm Token on smart contract and the ERC20 tokens will be transferred back to them.
 
 ## Install Truffle and Ganache
+```
+brew install truffle
+```
+or
+```
+npm install truffle
+```
 
 If this is the first time you are writing a smart contract, you will need to set up your environment. We are going to use two tools: [Truffle](https://www.trufflesuite.com/) and [Ganache](https://www.trufflesuite.com/ganache).
 
@@ -32,6 +39,33 @@ This will create a blank project for the development and deployment of our smart
 
 * `truffle-config.js`: Truffle configuration file
 
+## Update Solidity Version
+
+To compile our smart contract, we must first check our solidity compiler version. You can check that by running the command:
+
+```
+truffle version
+```
+
+The default version is the `Solidity v0.5.16`. Since our token is written using the solidity version `0.8.10`, if we run the command to compile our contracts we will get a compiler error. In order to specify which solidity compiler version to use, go to the file `truffle-config.js` and set to the desired compiler version as seen below:
+
+```javascript
+// Configure your compilers
+compilers: {
+  solc: {
+    version: "0.8.10",    // Fetch exact version from solc-bin (default: truffle's version)
+    // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+    // settings: {          // See the solidity docs for advice about optimization and evmVersion
+    //  optimizer: {
+    //    enabled: false,
+    //    runs: 200
+    //  },
+    //  evmVersion: "byzantium"
+    // }
+  }
+}
+```
+
 ## Create the ERC20 Token
 
 First we need to create our ERC20 token that we will use to stake on the smart contract. To create our fungible token, we will first need to install the OpenZeppelin library. This library contains the implementations of standards such as the ERC20 and the ERC721. To install it, run the command:
@@ -43,14 +77,16 @@ npm install @openzeppelin/contracts
 Using the openzeppelin library we can create our ERC20 token called `MyToken` with the following solidity code:
 
 ```solidity
-pragma solidity ^0.6.2;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.2;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MyToken is ERC20 {
-    constructor() public ERC20("MyToken", "MTKN"){
+    constructor() ERC20("MyToken", "MTKN"){
         _mint(msg.sender, 1000000000000000000000000);
     }
+    
 }
 ```
 
@@ -89,31 +125,6 @@ module.exports = async function(deployer, network, accounts) {
     // Deploy MyToken
     await deployer.deploy(MyToken)
     const myToken = await MyToken.deployed()
-}
-```
-
-To compile our smart contract, we must first check our solidity compiler version. You can check that by running the command:
-
-```
-truffle version
-```
-
-The default version is the `Solidity v0.5.16`. Since our token is written using the solidity version `0.6.2`, if we run the command to compile our contracts we will get a compiler error. In order to specify which solidity compiler version to use, go to the file `truffle-config.js` and set to the desired compiler version as seen below:
-
-```javascript
-// Configure your compilers
-compilers: {
-  solc: {
-    version: "0.6.2",    // Fetch exact version from solc-bin (default: truffle's version)
-    // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-    // settings: {          // See the solidity docs for advice about optimization and evmVersion
-    //  optimizer: {
-    //    enabled: false,
-    //    runs: 200
-    //  },
-    //  evmVersion: "byzantium"
-    // }
-  }
 }
 ```
 
@@ -169,12 +180,15 @@ The FarmToken smart contract will have 3 functions:
 Let's look at the FarmToken constructor:
 
 ```solidity
-pragma solidity ^0.6.2;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity 0.8.10;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
-import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+
 
 contract FarmToken is ERC20 {
     using Address for address;
@@ -183,12 +197,10 @@ contract FarmToken is ERC20 {
 
     IERC20 public token;
 
-    constructor(address _token)
-        public
-        ERC20("FarmToken", "FRM")
-    {
+    constructor(address _token) ERC20("FarmToken", "FRM") {
         token = IERC20(_token);
     }
+}
 ```
 
 * Lines 3-6: We are importing the following contracts from openzeppelin: IERC20.sol, Address.sol, SafeERC20.sol and ERC20.sol.
